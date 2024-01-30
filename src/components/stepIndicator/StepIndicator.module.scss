@@ -1,0 +1,27 @@
+// @import "@scss";
+
+.step {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  color: #817CA5;
+  margin-bottom: 20px;
+}
+
+.indicator {
+  width: 16px;
+  height: 16px;
+}
+
+.indicatorInitial {
+  background-color: #5845DD;
+}
+
+.indicatorPassword {
+  background-color: #C9C5E8;
+}
+
+.indicatorReview {
+  background-color: #87839F;
+}
+
