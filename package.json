@@ -45,7 +45,7 @@
     "sass": "^1.70.0"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts,tsx}": [
+    "./src/**/*.{js,ts,tsx,scss}": [
       "prettier --write"
     ]
   }

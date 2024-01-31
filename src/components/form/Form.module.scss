@@ -1,0 +1,10 @@
+@import 'scssConfig';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 40px 20px;
+    background-color: $gray1;
+    border-radius: 20px;
+    row-gap: 40px;
+}

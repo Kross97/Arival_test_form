@@ -21,7 +21,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-       "#scss": ["/src/scss/config.scss"]
+       "scssConfig": ["/src/scss/config.scss"],
+       "@Assets": ["/src/assets/"]
     }
   },
   "include": [

@@ -1,17 +1,40 @@
-.label {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 400;
-  color: #fff;
+@import 'scssConfig';
 
-  & > input {
+.label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    row-gap: 8px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $white;
+}
+
+.input {
     padding: 12px 16px;
-    caret-color: #C0BCDF;
-  }
-  & > input::placeholder {
-    color: #C0BCDF;
-  }
+    caret-color: #c0bcdf;
+    &::placeholder {
+        color: #c0bcdf;
+    }
+}
+
+.errorLabel {
+    & > .input {
+        padding-right: 36px;
+    }
+    &:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        background-image: url('../../assets/svg/error.svg');
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(calc(50% - 16px));
+    }
+}
+
+.errorInputText {
+    color: #da2121;
 }
