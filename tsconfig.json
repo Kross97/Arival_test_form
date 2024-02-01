@@ -22,7 +22,7 @@
     "baseUrl": ".",
     "paths": {
        "scssConfig": ["/src/scss/config.scss"],
-       "@Assets": ["/src/assets/"]
+       "assets": ["/src/assets/"]
     }
   },
   "include": [

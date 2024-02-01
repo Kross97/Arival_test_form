@@ -1,0 +1,17 @@
+@import 'scssConfig';
+
+.option {
+    @include mainFont;
+    background-color: #fff;
+    padding: 12px 16px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f6f4ff;
+    }
+}
+
+.optionChecked {
+    font-weight: 600;
+    background-color: #f6f4ff;
+}

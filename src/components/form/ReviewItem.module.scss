@@ -1,0 +1,16 @@
+@import 'scssConfig';
+
+.itemReview {
+    @include mainFont;
+    display: flex;
+    justify-content: space-between;
+
+    & > span:first-child {
+        color: #cecaeb;
+        text-transform: capitalize;
+    }
+
+    & > span:last-child {
+        color: #fff;
+    }
+}

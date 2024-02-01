@@ -1,0 +1,62 @@
+@import 'scssConfig';
+
+.selectContain {
+    @include mainFont;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+
+    & > p {
+        color: $white;
+    }
+}
+
+.select {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 40px 12px 16px;
+    background-color: $white;
+
+    & > svg {
+        position: absolute;
+        transition: 0.5s ease;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+    }
+}
+
+.selectMenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 12px);
+    background-color: $white;
+    transition: none;
+    height: 0;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #dbd7ee;
+        border-radius: 2px;
+    }
+}
+
+.selectShow {
+    & > svg {
+        transform: rotate(180deg) translateY(50%);
+        transform-origin: center;
+    }
+    & .selectMenu {
+        transition: 0.5s ease;
+        height: 200px;
+    }
+}

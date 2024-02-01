@@ -1,2 +1,8 @@
 $white: #fff;
 $gray1: #817ca5;
+
+@mixin mainFont {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+}

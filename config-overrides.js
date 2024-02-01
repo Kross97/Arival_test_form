@@ -7,7 +7,7 @@ module.exports = function override(config) {
             ...config.resolve,
             alias: {
                 scssConfig: path.resolve(__dirname, 'src/scss/config.scss'),
-                '@Assets': path.resolve(__dirname, 'src/assets/'),
+                assets: path.resolve(__dirname, 'src/assets/'),
             },
         },
     };

@@ -3,12 +3,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export const FormPassword = ({ children, continueHandler, className }: any) => {
-    const {
-        register,
-        handleSubmit,
-        // watch,
-        // formState: { errors },
-    } = useForm<any>();
+    const { register, handleSubmit } = useForm<any>();
 
     const onSubmit: SubmitHandler<any> = data => {
         console.log(data);
@@ -30,7 +25,7 @@ export const FormPassword = ({ children, continueHandler, className }: any) => {
                 name={'repeatPassword'}
                 register={register}
             />
-            {children}
+            {children(true)}
         </form>
     );
 };

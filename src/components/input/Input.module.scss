@@ -1,13 +1,11 @@
 @import 'scssConfig';
 
 .label {
+    @include mainFont;
     display: flex;
     flex-direction: column;
     position: relative;
     row-gap: 8px;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 400;
     color: $white;
 }
 

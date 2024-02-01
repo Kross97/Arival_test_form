@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Input } from '../input/Input';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Select } from '../select/Select';
 
-export const FormInitial: FC<any> = ({ children, continueHandler, className }) => {
-    const {
-        register,
-        handleSubmit,
-        // watch,
-        // formState: { errors },
-    } = useForm<any>();
+export const FormInitial = ({
+    children,
+    continueHandler,
+    className,
+}: PropsWithChildren<{ className: string; continueHandler: any }>) => {
+    const { register, handleSubmit, watch } = useForm<any>();
+    const currentCountry = watch('country');
 
     const onSubmit: SubmitHandler<any> = data => {
         console.log(data);
@@ -23,6 +24,7 @@ export const FormInitial: FC<any> = ({ children, continueHandler, className }) =
                 placeholder={'Input username'}
                 name={'username'}
                 register={register}
+                registerValidations={{ required: true, pattern: /^[A-ZА-Я]{1,12}$/i }}
             />
             <Input
                 type={'text'}
@@ -30,15 +32,15 @@ export const FormInitial: FC<any> = ({ children, continueHandler, className }) =
                 placeholder={'Input email'}
                 name={'email'}
                 register={register}
+                registerValidations={{ required: true }}
             />
-            <Input
-                type={'text'}
+            <Select
+                currentCountry={currentCountry}
+                register={register}
                 title={'Country'}
                 placeholder={'Select country'}
-                name={'country'}
-                register={register}
             />
-            {children}
+            {children(true)}
         </form>
     );
 };
