@@ -50,6 +50,14 @@
     }
 }
 
+// scroll для firefox
+@-moz-document url-prefix() {
+    .selectMenu {
+        scrollbar-width: thin;
+        scrollbar-color: transparent #dbd7ee;
+    }
+}
+
 .selectShow {
     & > svg {
         transform: rotate(180deg) translateY(50%);

@@ -1,12 +1,12 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
 import { usePersistData } from '../hooks/usePersistData';
 import { INITIAL_STATE_FORM, STEPS } from '../constants/formDataProvider';
-import { IFormDataProvider } from '../types';
+import { IFormDataProvider, TContinueHandler } from '../types';
 
 export const FormDataProviderContext = React.createContext<{
     state: IFormDataProvider;
-    continueHandler: any;
-}>({ state: INITIAL_STATE_FORM, continueHandler: null });
+    continueHandler: TContinueHandler;
+}>({ state: INITIAL_STATE_FORM, continueHandler: () => {} });
 
 const getState = () => {
     const formDataPersist = localStorage.getItem('formData');

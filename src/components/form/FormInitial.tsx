@@ -1,20 +1,21 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Input } from '../input/Input';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Select } from '../select/Select';
+import { IFormStateStep, IFromStepProps } from '../../types';
+import { FIELD_VALIDATIONS } from '../../constants/form';
+import { useFormHandler } from '../../hooks/useFormHandler';
 
-export const FormInitial = ({
-    children,
-    continueHandler,
-    className,
-}: PropsWithChildren<{ className: string; continueHandler: any }>) => {
-    const { register, handleSubmit, watch } = useForm<any>();
+type TFieldsInitial = 'username' | 'email' | 'country';
+
+export const FormInitial = ({ renderAction, className }: IFromStepProps) => {
+    const { register, handleSubmit, watch, formState } = useForm<IFormStateStep<TFieldsInitial>>();
     const currentCountry = watch('country');
 
-    const onSubmit: SubmitHandler<any> = data => {
-        console.log(data);
-        continueHandler(data);
-    };
+    const { isDisableAction, onSubmit } = useFormHandler<IFormStateStep<TFieldsInitial>>({
+        watch,
+        errors: formState.errors,
+    });
 
     return (
         <form className={className} onSubmit={handleSubmit(onSubmit)}>
@@ -23,24 +24,28 @@ export const FormInitial = ({
                 title={'Username'}
                 placeholder={'Input username'}
                 name={'username'}
+                errorText={formState.errors.username?.message}
                 register={register}
-                registerValidations={{ required: true, pattern: /^[A-ZА-Я]{1,12}$/i }}
+                registerValidations={FIELD_VALIDATIONS['username']}
             />
             <Input
                 type={'text'}
                 title={'Email'}
                 placeholder={'Input email'}
                 name={'email'}
+                errorText={formState.errors.email?.message}
                 register={register}
-                registerValidations={{ required: true }}
+                registerValidations={FIELD_VALIDATIONS['email']}
             />
             <Select
                 currentCountry={currentCountry}
                 register={register}
                 title={'Country'}
                 placeholder={'Select country'}
+                registerValidations={FIELD_VALIDATIONS['country']}
+                errorText={formState.errors.country?.message}
             />
-            {children(true)}
+            {renderAction(!!isDisableAction)}
         </form>
     );
 };

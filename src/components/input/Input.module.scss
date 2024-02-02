@@ -29,10 +29,12 @@
         position: absolute;
         right: 16px;
         top: 50%;
-        transform: translateY(calc(50% - 16px));
+        transform: translateY(calc(50% - 4px));
     }
 }
 
 .errorInputText {
+    position: absolute;
+    top: calc(100% + 8px);
     color: #da2121;
 }

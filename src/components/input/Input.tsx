@@ -3,15 +3,17 @@ import classes from './Input.module.scss';
 import cn from 'classnames';
 import { UseFormRegister } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form';
+import { TKeysFormDataState } from '../../types';
 
-interface IProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IProps<T> extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
-    register: UseFormRegister<HTMLInputElement>;
+    name: TKeysFormDataState | 'repeatPassword';
+    register: T;
     registerValidations?: RegisterOptions;
     errorText?: string;
 }
 
-export const Input = ({
+export const Input = <T extends UseFormRegister<any>>({
     type,
     title,
     placeholder,
@@ -19,7 +21,7 @@ export const Input = ({
     name,
     register,
     registerValidations,
-}: IProps) => {
+}: IProps<T>) => {
     return (
         <label
             className={cn(classes.label, {

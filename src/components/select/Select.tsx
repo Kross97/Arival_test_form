@@ -4,13 +4,15 @@ import { Option } from './Option';
 import cn from 'classnames';
 import { ReactComponent as Arrow } from 'assets/svg/arrow_down.svg';
 import { ICountry } from '../../types';
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form/dist/types/form';
+import { UseFormRegister, RegisterOptions } from 'react-hook-form';
 
-interface IProps {
+interface IProps<T> {
     title: string;
-    register: UseFormRegister<ICountry>;
+    register: T;
     currentCountry: ICountry | null;
+    registerValidations?: RegisterOptions;
     placeholder: string;
+    errorText?: string;
 }
 
 const countries: ICountry[] = [
@@ -24,9 +26,16 @@ const countries: ICountry[] = [
     { id: 8, name: 'ssss5' },
 ];
 
-export const Select = ({ title, placeholder, register, currentCountry }: IProps) => {
+export const Select = <T extends UseFormRegister<any>>({
+    title,
+    placeholder,
+    register,
+    registerValidations,
+    currentCountry,
+    errorText,
+}: IProps<T>) => {
     const [isShowMenu, setShowMenu] = useState(false);
-    const { onChange, name } = register('country', { required: true });
+    const { onChange, name } = register('country', registerValidations);
 
     const setCountryHandler = (country: ICountry) => () => {
         void onChange({
@@ -57,6 +66,7 @@ export const Select = ({ title, placeholder, register, currentCountry }: IProps)
                         />
                     ))}
                 </div>
+                {errorText && <span>{errorText}</span>}
             </div>
         </div>
     );

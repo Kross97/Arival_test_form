@@ -1,8 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { ReviewItem } from './ReviewItem';
 import classes from './FormReview.module.scss';
+import { IFromStepProps } from '../../types';
 
-export const FormReview = ({ children, className }: PropsWithChildren<{ className: string }>) => {
+export const FormReview = ({ renderAction, className }: IFromStepProps) => {
     return (
         <div className={className}>
             <div className={classes.reviewDescription}>
@@ -10,7 +11,7 @@ export const FormReview = ({ children, className }: PropsWithChildren<{ classNam
                 <ReviewItem field={'password'} />
                 <ReviewItem field={'country'} />
             </div>
-            {children(true)}
+            {renderAction(false)}
         </div>
     );
 };

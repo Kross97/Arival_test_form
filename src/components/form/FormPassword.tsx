@@ -1,14 +1,20 @@
 import { Input } from '../input/Input';
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { IFormStateStep, IFromStepProps } from '../../types';
+import { useFormHandler } from '../../hooks/useFormHandler';
+import { FIELD_VALIDATIONS } from '../../constants/form';
 
-export const FormPassword = ({ children, continueHandler, className }: any) => {
-    const { register, handleSubmit } = useForm<any>();
+type TFormStatePassword = IFormStateStep<'password'> & { repeatPassword: string };
 
-    const onSubmit: SubmitHandler<any> = data => {
-        console.log(data);
-        continueHandler(data);
-    };
+export const FormPassword = ({ renderAction, className }: IFromStepProps) => {
+    const { register, handleSubmit, watch, formState } = useForm<TFormStatePassword>();
+
+    const { isDisableAction, onSubmit } = useFormHandler<TFormStatePassword>({
+        watch,
+        errors: formState.errors,
+    });
+
     return (
         <form className={className} onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -17,6 +23,8 @@ export const FormPassword = ({ children, continueHandler, className }: any) => {
                 placeholder={'Input password'}
                 name={'password'}
                 register={register}
+                registerValidations={FIELD_VALIDATIONS['password']}
+                errorText={formState.errors.password?.message}
             />
             <Input
                 type={'text'}
@@ -25,7 +33,7 @@ export const FormPassword = ({ children, continueHandler, className }: any) => {
                 name={'repeatPassword'}
                 register={register}
             />
-            {children(true)}
+            {renderAction(isDisableAction)}
         </form>
     );
 };
