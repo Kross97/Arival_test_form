@@ -1,14 +1,12 @@
 import { Input } from '../input/Input';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { IFormStateStep, IFromStepProps } from '../../types';
+import { IFromStepProps, TFormStatePassword } from '../../types';
 import { useFormHandler } from '../../hooks/useFormHandler';
 import { FIELD_VALIDATIONS } from '../../constants/form';
 
-type TFormStatePassword = IFormStateStep<'password'> & { repeatPassword: string };
-
 export const FormPassword = ({ renderAction, className }: IFromStepProps) => {
-    const { register, handleSubmit, watch, formState } = useForm<TFormStatePassword>();
+    const { register, handleSubmit, watch, formState, getValues } = useForm<TFormStatePassword>();
 
     const { isDisableAction, onSubmit } = useFormHandler<TFormStatePassword>({
         watch,
@@ -27,11 +25,13 @@ export const FormPassword = ({ renderAction, className }: IFromStepProps) => {
                 errorText={formState.errors.password?.message}
             />
             <Input
-                type={'text'}
+                type={'password'}
                 title={'Repeat passport'}
                 placeholder={'Repeat password'}
                 name={'repeatPassword'}
                 register={register}
+                registerValidations={FIELD_VALIDATIONS['repeatPassword'](getValues)}
+                errorText={formState.errors.repeatPassword?.message}
             />
             {renderAction(isDisableAction)}
         </form>

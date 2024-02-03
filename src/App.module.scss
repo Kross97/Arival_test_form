@@ -8,10 +8,25 @@
     min-height: 100vh;
     padding: 80px;
     box-sizing: border-box;
+
+    @include mobile {
+        padding: 40px;
+    }
+
+    @include mobile {
+        padding: 20px;
+    }
+
+    @include mobile-min {
+        padding: 10px;
+    }
 }
 
 .main {
     display: flex;
+    @include tablet-mobile {
+        flex-direction: column;
+    }
 }
 
 .indicators {
@@ -26,16 +41,12 @@
     row-gap: 42px;
     width: 400px;
     margin: 0 auto;
-}
 
-.formDescription {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 24px;
+    @include mobile {
+        width: 90%;
+    }
 
-    & > span:first-child {
-        font-size: 36px;
-        line-height: 42px;
+    @include mobile-min {
+        width: 100%;
     }
 }

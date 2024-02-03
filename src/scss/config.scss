@@ -1,8 +1,38 @@
+//colors
 $white: #fff;
 $gray1: #817ca5;
+
+//sizes
+$tablet: 1023;
+$mobile: 575;
+$mobile-min: 350;
 
 @mixin mainFont {
     font-size: 14px;
     line-height: 16px;
     font-weight: 400;
+}
+
+@mixin max-width($width) {
+    @media only screen and (max-width: #{$width}px) {
+        @content;
+    }
+}
+
+@mixin tablet-mobile() {
+    @include max-width($tablet) {
+        @content;
+    }
+}
+
+@mixin mobile() {
+    @include max-width($mobile) {
+        @content;
+    }
+}
+
+@mixin mobile-min() {
+    @include max-width($mobile-min) {
+        @content;
+    }
 }

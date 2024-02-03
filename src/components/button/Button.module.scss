@@ -1,20 +1,20 @@
 .btn {
-  font-size: 24px;
-  line-height: 28px;
-  border-radius: 4px;
-  text-align: center;
-  background-color: #fff;
-  color: #413C5F;
-  outline: none;
-  border: none;
-  padding: 14px 0;
-  &:hover {
-    cursor: pointer;
-  }
+    font-size: 24px;
+    line-height: 28px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #fff;
+    color: #413c5f;
+    outline: none;
+    border: none;
+    padding: 16px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .btnDisabled {
-  pointer-events: none;
-  background-color: #A39FC1;
-  color: #8B85B1;
+    pointer-events: none;
+    background-color: #a39fc1;
+    color: #8b85b1;
 }

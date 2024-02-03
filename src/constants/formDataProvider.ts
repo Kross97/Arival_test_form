@@ -13,3 +13,5 @@ export const INITIAL_STATE_FORM: IFormDataProvider = {
     country: null,
     password: '',
 };
+
+export const STORAGE_KEY = 'formData';

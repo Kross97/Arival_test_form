@@ -26,6 +26,8 @@ export interface IFromStepProps {
     renderAction: (isDisabled: boolean) => JSX.Element;
 }
 
+export type TFormStatePassword = IFormStateStep<'password'> & { repeatPassword: string };
+
 export interface ICountry {
     id: number;
     name: string;

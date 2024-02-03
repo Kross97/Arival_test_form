@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { UseFormRegister } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form';
 import { TKeysFormDataState } from '../../types';
+import { ErrorText } from '../form/ErrorText';
 
 interface IProps<T> extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
@@ -35,7 +36,7 @@ export const Input = <T extends UseFormRegister<any>>({
                 placeholder={placeholder}
                 {...register(name, registerValidations)}
             />
-            {errorText && <span className={classes.errorInputText}>{errorText}</span>}
+            <ErrorText errorText={errorText} />
         </label>
     );
 };

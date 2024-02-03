@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import classes from './Select.module.scss';
 import { Option } from './Option';
 import cn from 'classnames';
 import { ReactComponent as Arrow } from 'assets/svg/arrow_down.svg';
 import { ICountry } from '../../types';
 import { UseFormRegister, RegisterOptions } from 'react-hook-form';
+import { useGetCountries } from '../../hooks/useGetCountries';
+import { ErrorText } from '../form/ErrorText';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 interface IProps<T> {
     title: string;
@@ -14,17 +17,6 @@ interface IProps<T> {
     placeholder: string;
     errorText?: string;
 }
-
-const countries: ICountry[] = [
-    { id: 1, name: 'ssss' },
-    { id: 2, name: 'ssss2' },
-    { id: 3, name: 'ssss3' },
-    { id: 4, name: 'ssss4' },
-    { id: 5, name: 'ssss5' },
-    { id: 6, name: 'ssss3' },
-    { id: 7, name: 'ssss4' },
-    { id: 8, name: 'ssss5' },
-];
 
 export const Select = <T extends UseFormRegister<any>>({
     title,
@@ -36,12 +28,20 @@ export const Select = <T extends UseFormRegister<any>>({
 }: IProps<T>) => {
     const [isShowMenu, setShowMenu] = useState(false);
     const { onChange, name } = register('country', registerValidations);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useClickOutside({ ref, outsideCb: () => setShowMenu(false) });
 
     const setCountryHandler = (country: ICountry) => () => {
         void onChange({
-            target: { name, value: country.id === currentCountry?.id ? null : country },
+            target: {
+                name,
+                value: country.id === currentCountry?.id ? null : country,
+            },
         });
     };
+
+    const countries = useGetCountries();
 
     const clickShowMenu = () => setShowMenu(!isShowMenu);
 
@@ -49,6 +49,7 @@ export const Select = <T extends UseFormRegister<any>>({
         <div className={classes.selectContain}>
             <p>{title}</p>
             <div
+                ref={ref}
                 onClick={clickShowMenu}
                 className={cn(classes.select, {
                     [classes.selectShow]: isShowMenu,
@@ -56,7 +57,7 @@ export const Select = <T extends UseFormRegister<any>>({
             >
                 {currentCountry?.name || placeholder}
                 <Arrow />
-                <div className={classes.selectMenu}>
+                <div onClick={e => e.stopPropagation()} className={classes.selectMenu}>
                     {countries.map(country => (
                         <Option
                             key={country.id}
@@ -66,7 +67,7 @@ export const Select = <T extends UseFormRegister<any>>({
                         />
                     ))}
                 </div>
-                {errorText && <span>{errorText}</span>}
+                <ErrorText errorText={errorText} />
             </div>
         </div>
     );

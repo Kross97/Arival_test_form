@@ -1,0 +1,30 @@
+@import 'scssConfig';
+
+.formDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 18px;
+
+    & > span:first-child {
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 42px;
+        color: #413c5f;
+
+        @include mobile {
+            font-size: 28px;
+        }
+    }
+
+    & > span:last-child {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #817ca5;
+
+        @include mobile {
+            font-size: 16px;
+        }
+    }
+}
