@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ButtonHTMLAttributes, useContext } from 'react';
 import { IFromStepProps, TStep } from '../../types';
 import { FormInitial } from './FormInitial';
 import { FormPassword } from './FormPassword';
@@ -23,8 +23,10 @@ export const Form = () => {
     return (
         <StepForm
             className={classes.form}
-            renderAction={isDisableAction => {
-                return <Button text={'Continue'} type={'submit'} isDisable={isDisableAction} />;
+            renderAction={(isDisableAction, text = 'Continue', type = 'submit', onClick) => {
+                return (
+                    <Button onClick={onClick} text={text} type={type} isDisable={isDisableAction} />
+                );
             }}
         />
     );

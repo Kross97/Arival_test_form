@@ -6,11 +6,13 @@
     justify-content: space-between;
 
     & > span:first-child {
-        color: #cecaeb;
+        color: $robinEggBlue;
         text-transform: capitalize;
     }
 
     & > span:last-child {
-        color: #fff;
+        max-width: 70%;
+        word-break: break-all;
+        color: $white;
     }
 }

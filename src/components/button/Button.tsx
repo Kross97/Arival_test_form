@@ -7,9 +7,10 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     isDisable?: boolean;
 }
 
-export const Button = ({ text, isDisable, type }: IProps) => {
+export const Button = ({ onClick, text, isDisable, type }: IProps) => {
     return (
         <button
+            onClick={onClick}
             className={cn(classes.btn, {
                 [classes.btnDisabled]: !!isDisable,
             })}

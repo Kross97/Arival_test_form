@@ -1,7 +1,7 @@
 @import 'scssConfig';
 
 .app {
-    background-image: url('assets/png/appBg.png');
+    background-image: url('./assets/png/appBg.png');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -33,6 +33,14 @@
     display: flex;
     flex-direction: column;
     margin-top: 64px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        visibility: hidden;
+        @include mainFontFamily;
+        font-weight: 600;
+    }
 }
 
 .containForm {

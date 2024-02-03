@@ -6,7 +6,10 @@ import { useFormHandler } from '../../hooks/useFormHandler';
 import { FIELD_VALIDATIONS } from '../../constants/form';
 
 export const FormPassword = ({ renderAction, className }: IFromStepProps) => {
-    const { register, handleSubmit, watch, formState, getValues } = useForm<TFormStatePassword>();
+    const { register, handleSubmit, watch, formState, getValues, trigger } =
+        useForm<TFormStatePassword>({
+            values: { password: '', repeatPassword: '' },
+        });
 
     const { isDisableAction, onSubmit } = useFormHandler<TFormStatePassword>({
         watch,
@@ -21,7 +24,7 @@ export const FormPassword = ({ renderAction, className }: IFromStepProps) => {
                 placeholder={'Input password'}
                 name={'password'}
                 register={register}
-                registerValidations={FIELD_VALIDATIONS['password']}
+                registerValidations={FIELD_VALIDATIONS['password'](getValues, trigger)}
                 errorText={formState.errors.password?.message}
             />
             <Input

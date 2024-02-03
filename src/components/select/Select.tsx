@@ -55,7 +55,13 @@ export const Select = <T extends UseFormRegister<any>>({
                     [classes.selectShow]: isShowMenu,
                 })}
             >
-                {currentCountry?.name || placeholder}
+                <span
+                    className={cn({
+                        [classes.selectNotValue]: !currentCountry?.name,
+                    })}
+                >
+                    {currentCountry?.name || placeholder}
+                </span>
                 <Arrow />
                 <div onClick={e => e.stopPropagation()} className={classes.selectMenu}>
                     {countries.map(country => (

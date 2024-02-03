@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, ReactNode, useCallback, useMemo, useState } from 'react';
 import { INITIAL_STATE_FORM, STEPS, STORAGE_KEY } from '../constants/formDataProvider';
 import { IFormDataProvider, TContinueHandler } from '../types';
 import { useSyncTabsState } from '../hooks/useSyncTabsState';
@@ -14,7 +14,7 @@ const getState = () => {
     return formDataPersist ? JSON.parse(formDataPersist) : INITIAL_STATE_FORM;
 };
 
-export const FormDataProvider: FC<any> = ({ children }) => {
+export const FormDataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [formState, setFormState] = useState<IFormDataProvider>(getState);
 
     useSyncTabsState({

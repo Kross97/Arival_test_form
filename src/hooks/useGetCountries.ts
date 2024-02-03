@@ -15,7 +15,9 @@ export const useGetCountries = () => {
             .then(res => res.json())
             .then((countries: ICountryEntity[]) => {
                 setCountries(
-                    countries.map((country, index) => ({ id: index, name: country.name.common }))
+                    countries
+                        .map((country, index) => ({ id: index, name: country.name.common }))
+                        .sort((aCountry, bCountry) => aCountry.name.localeCompare(bCountry.name))
                 );
             })
             .catch(() => {

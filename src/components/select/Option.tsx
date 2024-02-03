@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Option.module.scss';
 import cn from 'classnames';
+import { ReactComponent as CheckIcon } from 'assets/svg/check.svg';
 
 interface IProps {
     isChecked: boolean;
@@ -17,6 +18,7 @@ export const Option = ({ text, isChecked, onClick }: IProps) => {
             })}
         >
             {text}
+            {isChecked && <CheckIcon />}
         </div>
     );
 };

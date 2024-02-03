@@ -1,10 +1,12 @@
+@import 'scssConfig';
+
 .btn {
     font-size: 24px;
     line-height: 28px;
     border-radius: 4px;
     text-align: center;
-    background-color: #fff;
-    color: #413c5f;
+    background-color: $white;
+    color: $purple;
     outline: none;
     border: none;
     padding: 16px;
@@ -15,6 +17,6 @@
 
 .btnDisabled {
     pointer-events: none;
-    background-color: #a39fc1;
-    color: #8b85b1;
+    background-color: $blueBell;
+    color: $coolGrey;
 }

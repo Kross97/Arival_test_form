@@ -1,19 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
 
 interface IProps {
-    ref: React.RefObject<HTMLDivElement>;
+    ref: RefObject<HTMLDivElement>;
     outsideCb: () => void;
 }
 
 export const useClickOutside = ({ ref, outsideCb }: IProps) => {
     useEffect(() => {
         const clickHandler = (event: MouseEvent) => {
-            console.log(
-                'event =>',
-                event,
-                's',
-                event.target instanceof HTMLElement && !ref.current?.contains(event.target)
-            );
             if (event.target instanceof HTMLElement && !ref.current?.contains(event.target)) {
                 outsideCb();
             }

@@ -1,4 +1,5 @@
 import { INITIAL_STATE_FORM } from '../constants/formDataProvider';
+import { ButtonHTMLAttributes } from 'react';
 
 export type TStep = 'initial' | 'password' | 'review';
 
@@ -23,7 +24,12 @@ export type TContinueHandler = (partState: Partial<Omit<IFormDataProvider, 'step
 
 export interface IFromStepProps {
     className: string;
-    renderAction: (isDisabled: boolean) => JSX.Element;
+    renderAction: (
+        isDisabled: boolean,
+        text?: string,
+        type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
+        onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick']
+    ) => JSX.Element;
 }
 
 export type TFormStatePassword = IFormStateStep<'password'> & { repeatPassword: string };

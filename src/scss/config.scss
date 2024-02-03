@@ -1,6 +1,18 @@
 //colors
 $white: #fff;
-$gray1: #817ca5;
+$grayPurple: #817ca5;
+$purple: #413c5f;
+$blueBell: #a39fc1;
+$coolGrey: #8b85b1;
+$venetianRed: #da2121;
+$robinEggBlue: #cecaeb;
+$vodka: #c0bcdf;
+$jacarta: #413c5f;
+$magnolia: #f6f4ff;
+$paleLavender: #dbd7ee;
+$majorelleBlue: #5845dd;
+$soap: #c9c5e8;
+$romanSilver: #87839f;
 
 //sizes
 $tablet: 1023;
@@ -11,6 +23,11 @@ $mobile-min: 350;
     font-size: 14px;
     line-height: 16px;
     font-weight: 400;
+}
+
+@mixin mainFontFamily {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 @mixin max-width($width) {
