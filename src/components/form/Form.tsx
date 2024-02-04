@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, useContext } from 'react';
+import React, { useContext } from 'react';
 import { IFromStepProps, TStep } from '../../types';
 import { FormInitial } from './FormInitial';
 import { FormPassword } from './FormPassword';

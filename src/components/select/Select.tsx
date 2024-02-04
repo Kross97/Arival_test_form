@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import classes from './Select.module.scss';
 import { Option } from './Option';
 import cn from 'classnames';
@@ -30,7 +30,7 @@ export const Select = <T extends UseFormRegister<any>>({
     const { onChange, name } = register('country', registerValidations);
     const ref = useRef<HTMLDivElement>(null);
 
-    useClickOutside({ ref, outsideCb: () => setShowMenu(false) });
+    useClickOutside({ ref, outsideCb: useCallback(() => setShowMenu(false), []) });
 
     const setCountryHandler = (country: ICountry) => () => {
         void onChange({
