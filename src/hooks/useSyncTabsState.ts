@@ -12,14 +12,18 @@ export const useSyncTabsState = ({ keyPersist, persistData, syncCallback }: IPro
         if (document.visibilityState === 'visible') {
             localStorage.setItem(keyPersist, JSON.stringify(persistData));
         }
-    }, [persistData]);
+    }, [persistData, keyPersist]);
 
     useEffect(() => {
-        window.addEventListener('storage', () => {
+        const storageCb = () => {
             if (document.visibilityState === 'hidden') {
                 const storageState = localStorage.getItem(keyPersist);
                 syncCallback(storageState ? JSON.parse(storageState) : persistData);
             }
-        });
-    }, []);
+        };
+        window.addEventListener('storage', storageCb);
+        return () => {
+            window.removeEventListener('storage', storageCb);
+        };
+    }, [keyPersist, persistData, syncCallback]);
 };

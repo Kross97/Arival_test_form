@@ -17,6 +17,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "lint-staged": "lint-staged",
+    "check-types": "tsc --noemit",
     "prepare": "husky"
   },
   "eslintConfig": {

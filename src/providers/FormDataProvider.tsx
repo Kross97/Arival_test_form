@@ -20,7 +20,7 @@ export const FormDataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     useSyncTabsState({
         keyPersist: STORAGE_KEY,
         persistData: formState,
-        syncCallback: storageState => setFormState(storageState),
+        syncCallback: useCallback(storageState => setFormState(storageState), []),
     });
 
     const continueHandler = useCallback((partState: Partial<Omit<IFormDataProvider, 'step'>>) => {

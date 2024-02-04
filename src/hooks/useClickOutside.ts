@@ -16,5 +16,5 @@ export const useClickOutside = ({ ref, outsideCb }: IProps) => {
         return () => {
             document.removeEventListener('click', clickHandler);
         };
-    }, []);
+    }, [ref, outsideCb]);
 };
